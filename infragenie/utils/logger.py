@@ -12,7 +12,6 @@ from infragenie.config import settings
 def configure_logging(level: str | None = None, log_format: str | None = None) -> None:
     """Configure structlog for structured JSON or console output."""
     lvl_str = level or settings.log_level
-    fmt_str = log_format or settings.log_format
     log_level = getattr(logging, lvl_str.upper(), logging.INFO)
 
     shared_processors: list[structlog.types.Processor] = [

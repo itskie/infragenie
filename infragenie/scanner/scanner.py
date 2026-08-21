@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from infragenie.config import settings
-from infragenie.utils.exceptions import ScanFailedError, TrivyNotFoundError
+from infragenie.utils.exceptions import ScanFailedError, TrivyNotFoundError, ScannerError
 from infragenie.utils.logger import get_logger
 
 log = get_logger(__name__)
@@ -128,7 +128,6 @@ class SecurityScanner:
 
         if result.returncode not in (0, 1):  # 1 = vulns found (expected)
             log.error("Trivy error", stderr=result.stderr[:500])
-            from infragenie.utils.exceptions import ScannerError
             raise ScannerError(f"Trivy exited with code {result.returncode}: {result.stderr[:200]}")
 
         return self._parse_output(result.stdout, target, scan_type)

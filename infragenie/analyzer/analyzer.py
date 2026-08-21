@@ -197,8 +197,6 @@ class SemanticAnalyzer:
         if exposed_port != 8080:
             start_cmd = start_cmd.replace("8080", str(exposed_port))
 
-        # Health check endpoint
-        hc_path = ast.health_check_endpoints[0].path if ast.health_check_endpoints else "/health"
 
         resources = self._resource_preset
 

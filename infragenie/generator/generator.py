@@ -206,9 +206,9 @@ class DockerfileGenerator:
         Ensures mandatory security requirements even if LLM misses them.
         """
         lines = dockerfile.splitlines()
-        has_user = any(l.strip().upper().startswith("USER ") for l in lines)
-        has_healthcheck = any(l.strip().upper().startswith("HEALTHCHECK") for l in lines)
-        has_workdir = any(l.strip().upper().startswith("WORKDIR") for l in lines)
+        has_user = any(line.strip().upper().startswith("USER ") for line in lines)
+        has_healthcheck = any(line.strip().upper().startswith("HEALTHCHECK") for line in lines)
+        has_workdir = any(line.strip().upper().startswith("WORKDIR") for line in lines)
 
         additions: list[str] = []
 
@@ -293,7 +293,7 @@ class DockerfileGenerator:
         notes = [
             f"Base image: {report.runtime_needs.base_image}",
             f"Exposed port: {report.runtime_needs.exposed_port}",
-            f"Non-root user: appuser (UID 1001)",
+            "Non-root user: appuser (UID 1001)",
             "Multi-stage build: ✅ (builder → runtime)",
             "HEALTHCHECK: ✅",
             ".dockerignore: ✅ (prevents secret leakage)",
