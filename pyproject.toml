@@ -50,10 +50,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/kie/infragenie"
-Repository = "https://github.com/kie/infragenie"
-Issues = "https://github.com/kie/infragenie/issues"
-Documentation = "https://github.com/kie/infragenie#readme"
+Homepage = "https://github.com/itskie/infragenie"
+Repository = "https://github.com/itskie/infragenie"
+Issues = "https://github.com/itskie/infragenie/issues"
+Documentation = "https://github.com/itskie/infragenie#readme"
 
 [project.scripts]
 infragenie = "infragenie.cli:app"
