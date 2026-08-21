@@ -11,6 +11,9 @@
 [![Tests](https://img.shields.io/badge/Tests-55%20Passing-brightgreen.svg)](tests/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+<img src="assets/hero_banner.jpg" alt="InfraGenie Banner" width="100%" style="border-radius: 8px;" />
+
+
 ---
 
 [Key Highlights](#-key-highlights) • [DevOps ROI](#-the-roi-why-devops-engineers--teams-love-infragenie) • [The 1-Click Pipeline](#-the-magic-button-infragenie-run) • [Architecture](#-architecture--pipeline-overview) • [Languages](#-supported-languages--frameworks) • [AI Providers](#-supported-ai-providers) • [CLI Commands](#-cli-commands--linux-style-short-flags) • [Prerequisites](#-prerequisites) • [Quickstart](#-installation--quickstart) • [Contributing](#-contributing)
@@ -52,6 +55,11 @@ infragenie run .   # That's it.
 
 ## ⏱️ The ROI: Why DevOps Engineers & Teams Love InfraGenie
 
+<p align="center">
+  <img src="assets/before_after.jpg" alt="DevOps ROI Comparison" width="100%" style="border-radius: 8px;" />
+</p>
+
+
 In modern microservice architectures, onboarding a new service to AWS takes hours of repetitive, error-prone manual labor. **InfraGenie cuts that down to under 120 seconds.**
 
 ```
@@ -73,6 +81,11 @@ In modern microservice architectures, onboarding a new service to AWS takes hour
 ---
 
 ## 🪄 The Magic Button: `infragenie run`
+
+<p align="center">
+  <img src="assets/pipeline.jpg" alt="InfraGenie Pipeline" width="100%" style="border-radius: 8px;" />
+</p>
+
 
 The `run` command is InfraGenie’s master autonomous pipeline. With one terminal command, it chains the entire DevSecOps lifecycle:
 
