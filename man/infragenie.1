@@ -1,0 +1,59 @@
+.TH INFRAGENIE 1 "August 2026" "v0.1.0" "InfraGenie Manual"
+.SH NAME
+infragenie \- Autonomous AI-Native DevSecOps Orchestrator
+.SH SYNOPSIS
+.B infragenie
+[\fIOPTIONS\fR] \fICOMMAND\fR [\fIARGS\fR]...
+.SH DESCRIPTION
+.B InfraGenie
+is an autonomous DevSecOps orchestrator that bridges application source code to a live, hardened production workload on AWS ECS Fargate. It performs AST semantic code analysis, AI-driven multi-stage Dockerfile generation adhering to CIS benchmarks, automated Trivy security vulnerability audits, and production AWS ECS Fargate container deployment.
+
+.SH GLOBAL OPTIONS
+.TP
+\fB\-v\fR, \fB\-\-verbose\fR
+Enable verbose debug logging output.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Display command-line help menu and exit.
+
+.SH COMMANDS
+.TP
+\fBanalyze\fR [\fIPATH\fR] [\fB\-o\fR \fIFILE\fR]
+Inspect project tech stack, language, framework, exposed ports, environment variables, and /health routes.
+.TP
+\fBgenerate\fR [\fIPATH\fR] [\fB\-d\fR] [\fB\-o\fR \fIDIR\fR]
+Use LLM (Gemini, Claude, GPT, or Ollama) with RAG context to generate production-ready Dockerfile and .dockerignore.
+.TP
+\fBscan\fR [\fITARGET\fR] [\fB\-i\fR]
+Run Trivy security scan on local project filesystem or built container image (-i).
+.TP
+\fBdeploy\fR [\fIPATH\fR] [\fB\-t\fR \fITAG\fR] [\fB\-c\fR \fICOUNT\fR]
+Deploy container to AWS ECS Fargate via Amazon ECR repository. Builds and pushes Docker image to Amazon ECR.
+.TP
+\fBrun\fR [\fIPATH\fR] [\fB\-s\fR] [\fB\-d\fR]
+Master 1-Click Pipeline: Execute Analyze -> Generate -> Scan -> Deploy sequentially.
+.TP
+\fBdoctor\fR
+Run diagnostic health check on Python, AI keys, Docker, Trivy, and AWS credentials.
+.TP
+\fBrm\fR [\fIPATH_OR_NAME\fR] [\fB\-f\fR] [\fB\-\-no\-ecr\fR]
+Remove deployed AWS cloud resources (ECS Fargate service, task definitions, and ECR repository).
+
+.SH EXAMPLES
+.TP
+Analyze current project directory:
+.B infragenie analyze .
+.TP
+Generate Dockerfile preview (dry-run):
+.B infragenie generate . -d
+.TP
+Run full pipeline skipping AWS deploy:
+.B infragenie run . -s
+.TP
+Force delete AWS resources:
+.B infragenie rm my-app -f
+
+.SH AUTHOR
+Created by DevSecOps Engineering Team.
+.SH COPYRIGHT
+MIT License.
