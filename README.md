@@ -8,7 +8,7 @@
 [![AWS](https://img.shields.io/badge/AWS-ECS%20Fargate%20%7C%20ECR-FF9900?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/ecs/)
 [![Security](https://img.shields.io/badge/Security-CIS%20Benchmark%20Hardened-22C55E?logo=securityscorecard&logoColor=white)](https://www.cisecurity.org/)
 [![LLM Support](https://img.shields.io/badge/AI%20Backends-OpenAI%20%7C%20Claude%20%7C%20Gemini%20%7C%20Ollama-8B5CF6)](https://github.com/kie/infragenie)
-[![CI](https://github.com/itskie/infragenie/actions/workflows/ci.yml/badge.svg)](https://github.com/itskie/infragenie/actions/workflows/ci.yml)
+[![CI](https://github.com/itskie/infragenie/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/itskie/infragenie/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/Tests-55%20Passing-brightgreen.svg)](tests/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
