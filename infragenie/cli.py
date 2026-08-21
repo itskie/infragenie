@@ -510,9 +510,13 @@ def doctor(
 
     console.print(table)
     console.print()
-    if install and not docker_running:
-        from infragenie.utils.os_helper import install_docker_interactively
-        install_docker_interactively(console=console)
+    if install:
+        if not docker_running:
+            from infragenie.utils.os_helper import install_docker_interactively
+            install_docker_interactively(console=console)
+        if not trivy_bin:
+            from infragenie.utils.os_helper import install_trivy_interactively
+            install_trivy_interactively(console=console)
 
 if __name__ == "__main__":
     app()

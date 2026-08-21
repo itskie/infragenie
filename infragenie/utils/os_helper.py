@@ -166,3 +166,67 @@ def install_docker_interactively(console=None) -> bool:
         return False
 
     return False
+
+
+def install_trivy_interactively(console=None) -> bool:
+    """
+    Prompt user and run cross-platform Trivy security scanner installation.
+    Returns True if successfully installed, False otherwise.
+    """
+    import subprocess
+    import shutil
+    import typer
+
+    sys_name = platform.system()
+    guide = get_trivy_install_guide()
+
+    if console:
+        console.print(f"\n[bold yellow]⚠️ Trivy Security Scanner is not installed on your {get_os_info()} system.[/bold yellow]")
+        console.print(f"[dim]Recommended: {guide}[/dim]\n")
+
+    confirm = typer.confirm("🤖 Would you like InfraGenie to attempt installing Trivy automatically?", default=False)
+    if not confirm:
+        return False
+
+    if console:
+        console.print("[bold cyan]🚀 Starting automated Trivy installation...[/bold cyan]")
+
+    try:
+        if sys_name == "Darwin":
+            if shutil.which("brew"):
+                subprocess.run(["brew", "install", "trivy"], check=True)
+                return True
+            else:
+                if console:
+                    console.print("[red]Homebrew not found. Please install Homebrew or Trivy manually.[/red]")
+                return False
+        elif sys_name == "Linux":
+            os_release = Path("/etc/os-release")
+            if os_release.exists():
+                txt = os_release.read_text().lower()
+                if "ubuntu" in txt or "debian" in txt:
+                    cmd = "sudo apt update && sudo apt install -y wget apt-transport-https gnupg && wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null && echo 'deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main' | sudo tee -a /etc/apt/sources.list.d/trivy.list && sudo apt update && sudo apt install -y trivy"
+                    subprocess.run(cmd, shell=True, check=True)
+                    return True
+                elif "fedora" in txt or "rhel" in txt or "centos" in txt:
+                    subprocess.run(["sudo", "dnf", "install", "-y", "trivy"], check=True)
+                    return True
+                elif "arch" in txt:
+                    subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "trivy"], check=True)
+                    return True
+            # Fallback script
+            subprocess.run("curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin", shell=True, check=True)
+            return True
+        elif sys_name == "Windows":
+            if shutil.which("choco"):
+                subprocess.run(["choco", "install", "-y", "trivy"], check=True)
+                return True
+            if console:
+                console.print("[yellow]On Windows, please install Trivy from https://aquasecurity.github.io/trivy/[/yellow]")
+            return False
+    except Exception as e:
+        if console:
+            console.print(f"[red]Installation encountered an error: {e}[/red]")
+        return False
+
+    return False
